@@ -81,7 +81,6 @@ nav a {
 .header-right button:hover {
     color: white;
     background: var(--gradient2);
-    transform: translateY(-5px);
 }
 
 
