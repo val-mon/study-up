@@ -1,11 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyUp</title>
+    <link rel="stylesheet" href="dashboard.css">
 </head>
+
 <body>
-    
+
+    <!-- header -->
+    <header>
+        <!-- logo -->
+        <a href="dashboard.html">
+            <img src="./logo.svg" alt="Logo" class="logo">
+        </a>
+
+        <!-- links -->
+        <nav>
+            <a href="dashboard.html" class="nav-active">Dashboard</a>
+            <a href="courses.html">Courses</a>
+            <a href="account.html">Account</a>
+        </nav>
+
+        <!-- logout -->
+        <div class="header-right">
+            <p>val-mon</p>
+            <button>Logout</button>
+        </div>
+    </header>
+
+    <!-- main -->
+    <main id="dashboard">
+
+        <!-- weather -->
+        <section class="weather">
+            <h1>≻ Weather</h1>
+            <div class="inner_cart">
+                <ul>
+                    <li>Temperature : 30°</li>
+                    <li>Vent : 3 km/h</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- quicklinks -->
+        <section class="quicklinks">
+            <h1>≻ Quicklinks</h1>
+            <div class="inner_cart">
+                <ul>
+                    <li><a href="https://isc.hevs.ch/learn/" target="_blank" rel="noopener noreferrer">ISC-Learn</a>
+                    </li>
+                    <li><a href="https://age.hes-so.ch/imoniteur_AGEP/!logins.htm?ww_x_urlAppelant=gestac.htm"
+                            target="_blank" rel="noopener noreferrer">IS-Academia</a></li>
+                    <li><a href="https://hessoit.sharepoint.com/sites/VS-Intranet-HEI/SitePages/FormationITSystemesComm.aspx"
+                            target="_blank" rel="noopener noreferrer">Intranet</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- tasks -->
+        <section class="tasks">
+            <h1>≻ Tasks</h1>
+            <div class="inner_cart">
+                <label>
+                    <input type="checkbox" name="task-1" value="done" required />
+                    HTML
+                </label>
+                <label>
+                    <input type="checkbox" data-id="65f8abc123" class="task-checkbox">
+                    Apprendre HTML
+                </label>
+            </div>
+        </section>
+
+        <!-- reminders -->
+        <section class="reminders">
+            <h1>≻ Reminders</h1>
+            <div class="inner_cart">
+                <ul>
+                    <li>Reminder1</li>
+                    <li>Reminder2</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- dates -->
+        <section class="dates">
+            <h1>≻ Dates</h1>
+            <div class="inner_cart">
+                <ul>
+                    <li>01.06.26 : ...</li>
+                    <li>02.06.26 : ...</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <p>Copyright &copy; 2026 StudyUp - All rights reserved</p>
+    </footer>
+
 </body>
+
 </html>
