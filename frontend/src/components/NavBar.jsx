@@ -1,18 +1,14 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 
-function Home() {};
-
-function NavBar(props) {
-    const { page } = props
-    const navigate = useNavigate()
+function NavBar() {
+    const { pathname } = useLocation()
 
     return (
         <>
             <Link to="/">
                 <img src="/src/assets/logo.svg" className="logo" />
             </Link>
-            {(page === "Home") && <Home />}
+            {pathname === "/" && <></>}
         </>
     )
 }

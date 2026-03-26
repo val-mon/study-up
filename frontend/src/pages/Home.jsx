@@ -1,10 +1,8 @@
-import NavBar from "../components/NavBar";
 import "../css/Home.css";
 
 function Home() {
     return (
         <>
-            <NavBar page="Home" />
             <div className="hero">
                 <h1>Don't Study Hard, Study Smart!</h1>
                 <p>Maximize your learning efficiency with our smart study platform that helps you stay organized.
@@ -12,7 +10,7 @@ function Home() {
             </div>
         </>
     )
-}
 
+}
 
 export default Home;
