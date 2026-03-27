@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router";
 import '../css/NavBar.css';
+import logo from '../assets/logo.svg';
 
 function NavBar() {
     const { pathname } = useLocation()
@@ -8,7 +9,7 @@ function NavBar() {
     return (
         <header>
             <Link to="/dashboard">
-                <img src="/src/assets/logo.svg" className="logo" />
+                <img src={logo} className="logo" />
             </Link>
 
             {isHome ? (
