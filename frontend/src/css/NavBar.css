@@ -1,0 +1,66 @@
+header {
+    background: white;
+    border-bottom: 2px solid var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px clamp(12px, 4vw, 32px);
+    min-height: 80px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    height: clamp(40px, 5vw, 80px);
+    width: auto;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(12px, 2vw, 30px);
+}
+
+nav a {
+    background: none;
+    border: none;
+    font-family: 'Futura';
+    font-size: clamp(16px, 2vw, 30px);
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.nav-active {
+    color: var(--main-color);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    font-size: clamp(14px, 1.5vw, 20px);
+    width: auto;
+    gap: 10px;
+}
+
+.header-right button {
+    height: 36px;
+    padding: 0 18px;
+    background: white;
+    color: black;
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+    font-family: 'Futura';
+    font-size: clamp(14px, 1.5vw, 20px);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.header-right button:hover {
+    color: white;
+    background: var(--gradient2);
+}

@@ -1,0 +1,87 @@
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-areas:
+        "weather   quicklinks dates"
+        "tasks     tasks      tasks"
+        "reminders reminders  reminders";
+}
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "weather    quicklinks"
+            "dates      dates"
+            "tasks      tasks"
+            "reminders  reminders";
+    }
+}
+
+@media (max-width: 560px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "weather"
+            "quicklinks"
+            "dates"
+            "tasks"
+            "reminders";
+    }
+}
+
+main h1 {
+    font-weight: normal;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(181, 179, 179, 0.3);
+}
+
+main section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: var(--gradient1);
+}
+
+.weather {
+    grid-area: weather;
+}
+
+.quicklinks {
+    grid-area: quicklinks;
+    background: var(--gradient2);
+    color: white;
+}
+
+.quicklinks a {
+    color: inherit;
+}
+
+.tasks {
+    grid-area: tasks;
+    background: var(--gradient2);
+    color: white;
+}
+
+.reminders {
+    grid-area: reminders;
+}
+
+.dates {
+    grid-area: dates;
+}
+
+.inner_cart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.inner_cart li {
+    margin-bottom: 8px;
+}
