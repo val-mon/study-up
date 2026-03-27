@@ -6,9 +6,9 @@ function NavBar() {
 
     return (
         <header>
-            <a href="/">
+            <Link href="/">
                 <img src="/src/assets/logo.svg" className="logo" />
-            </a>
+            </Link>
 
             <nav>
                 <Link to="/" className={pathname === "/" ? "nav-active" : ""}>Dashboard</Link>

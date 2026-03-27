@@ -72,15 +72,17 @@ function Tasks() {
 }
 
 function Reminders() {
-    <section className="reminders">
-        <h1>≻ Reminders</h1>
-        <div className="inner_cart">
-            <ul>
-                <li>Reminder1</li>
-                <li>Reminder2</li>
-            </ul>
-        </div>
-    </section>
+    return (
+        <section className="reminders">
+            <h1>≻ Reminders</h1>
+            <div className="inner_cart">
+                <ul>
+                    <li>Reminder1</li>
+                    <li>Reminder2</li>
+                </ul>
+            </div>
+        </section>
+    )
 }
 
 function Dates() {
@@ -101,7 +103,7 @@ export default function Dashboard() {
     return (
         <main id="dashboard">
             <Weather />
-            <Quicklinks/>
+            <Quicklinks />
             <Tasks />
             <Reminders />
             <Dates />
