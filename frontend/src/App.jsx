@@ -1,5 +1,5 @@
 import './css/App.css'
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate} from "react-router";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -9,12 +9,13 @@ function App() {
   return (
     <>
       <NavBar />
-      <Dashboard />
-      {/* <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </main> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        
+        {/* To fix a default root */}
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+      </Routes>
       <Footer />
     </>
   )

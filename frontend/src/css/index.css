@@ -14,4 +14,13 @@ body {
     font-family: 'Futura';
     color: black;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
