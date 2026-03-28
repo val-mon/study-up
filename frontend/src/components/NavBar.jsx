@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router";
-import '../css/NavBar.css';
 import logo from '../assets/logo.svg';
+import '../css/NavBar.css';
 
-function NavBar() {
+export default function NavBar() {
     const { pathname } = useLocation()
-    const isHome = pathname === "/"
+    const isLogged = ["/", "/login", "/register"].includes(pathname)
 
     return (
         <header>
@@ -12,7 +12,7 @@ function NavBar() {
                 <img src={logo} className="logo" />
             </Link>
 
-            {isHome ? (
+            {isLogged ? (
                 <div className="header-right">
                     <button>Login</button>
                     <button>Sign Up</button>
@@ -33,5 +33,3 @@ function NavBar() {
         </header>
     )
 }
-
-export default NavBar;

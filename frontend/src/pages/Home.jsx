@@ -1,6 +1,6 @@
 import "../css/Home.css";
 
-function Home() {
+export default function Home() {
     return (
         <>
             <section className="hero">
@@ -46,5 +46,3 @@ function Home() {
         </>
     )
 }
-
-export default Home;

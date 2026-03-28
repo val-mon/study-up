@@ -1,24 +1,24 @@
-import './css/App.css'
 import { Routes, Route, Navigate} from "react-router";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
+import { NavBar, Footer } from "./components";
+import { Home, Login, Register, Dashboard, Courses, Account } from "./pages";
+import './css/App.css'
 
-function App() {
+export default function App() {
   return (
     <>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
         <Route path="/dashboard" element={<Dashboard />} />
-        
-        {/* To fix a default root */}
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/account" element={<Account />} />
+
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />
     </>
   )
 }
-
-export default App
