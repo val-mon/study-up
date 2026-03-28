@@ -1,3 +1,4 @@
+/* #region Hero */
 .hero {
     text-align: center;
     padding: 48px;
@@ -20,6 +21,9 @@
     line-height: 1.75;
 }
 
+/* #endregion */
+
+/* #region Cards grid */
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -36,6 +40,9 @@
     gap: 14px;
 }
 
+/* #endregion */
+
+/* #region Card variants */
 .card-gray {
     background: linear-gradient(135deg, #e8e8e8 0%, #c4c4c4 100%);
     color: #1a1a1a;
@@ -46,6 +53,9 @@
     color: #ffffff;
 }
 
+/* #endregion */
+
+/* #region Card icon */
 .card-icon {
     width: 48px;
     height: 48px;
@@ -77,6 +87,9 @@
     color: #ffffff;
 }
 
+/* #endregion */
+
+/* #region Card typo */
 .card h2 {
     font-size: 1.1rem;
     font-weight: 700;
@@ -92,3 +105,5 @@
 .card-purple p {
     opacity: 0.9;
 }
+
+/* #endregion */

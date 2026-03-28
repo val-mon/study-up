@@ -1,3 +1,4 @@
+/* #region Header layout */
 header {
     background: white;
     border-bottom: 2px solid var(--main-color);
@@ -13,11 +14,17 @@ header {
     z-index: 100;
 }
 
+/* #endregion */
+
+/* #region Logo */
 .logo {
     height: clamp(40px, 5vw, 80px);
     width: auto;
 }
 
+/* #endregion */
+
+/* #region Navigation */
 nav {
     display: flex;
     align-items: center;
@@ -39,6 +46,9 @@ nav a {
     color: var(--main-color);
 }
 
+/* #endregion */
+
+/* #region User Actions */
 .header-right {
     display: flex;
     align-items: center;
@@ -64,3 +74,5 @@ nav a {
     color: white;
     background: var(--gradient2);
 }
+
+/* #endregion */

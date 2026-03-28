@@ -21,7 +21,7 @@ export default function NavBar() {
                 <>
                     <nav>
                         <Link to="/dashboard" className={pathname === "/dashboard" ? "nav-active" : ""}>Dashboard</Link>
-                        <Link to="/courses" className={pathname === "/courses" ? "nav-active" : ""}>Courses</Link>
+                        <Link to="/courses" className={pathname.startsWith("/courses") ? "nav-active" : ""}>Courses</Link>
                         <Link to="/account" className={pathname === "/account" ? "nav-active" : ""}>Account</Link>
                     </nav>
                     <div className="header-right">

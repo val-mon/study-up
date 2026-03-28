@@ -1,3 +1,4 @@
+/* #region Global */
 main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -29,7 +30,9 @@ main {
             "reminders";
     }
 }
+/* #endregion */
 
+/* #region Main */
 main h1 {
     font-weight: normal;
     padding-bottom: 10px;
@@ -45,7 +48,9 @@ main section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background: var(--gradient1);
 }
+/* #endregion */
 
+/* #region Cards */
 .weather {
     grid-area: weather;
 }
@@ -85,3 +90,4 @@ main section {
 .inner_cart li {
     margin-bottom: 8px;
 }
+/* #endregion */
