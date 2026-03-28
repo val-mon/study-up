@@ -1,15 +1,22 @@
+/* #region Variables */
 :root {
     --main-color: #3400ff;
     --gradient1: linear-gradient(135deg, #f0f2f5 0%, #e5e8ed 40%, #b7bbc1 100%);
     --gradient2: linear-gradient(135deg, #a092f8 0%, #6a4dff 40%, #a99afd 100%);
 }
 
+/* #endregion */
+
+/* #region Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* #endregion */
+
+/* #region Base layout */
 body {
     font-family: 'Futura';
     color: black;
@@ -24,3 +31,5 @@ body {
     flex-direction: column;
     flex-grow: 1;
 }
+
+/* #endregion */
