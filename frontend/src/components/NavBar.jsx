@@ -14,8 +14,8 @@ export default function NavBar() {
 
             {isLogged ? (
                 <div className="header-right">
-                    <button>Login</button>
-                    <button>Sign Up</button>
+                    <Link to="/login"><button>Login</button></Link>
+                    <Link to="/register"><button>Sign Up</button></Link>
                 </div>
             ) : (
                 <>
@@ -26,7 +26,7 @@ export default function NavBar() {
                     </nav>
                     <div className="header-right">
                         <p>Valentin Monod</p>
-                        <button>Logout</button>
+                        <Link to="/"><button>Logout</button></Link>
                     </div>
                 </>
             )}
