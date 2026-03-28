@@ -1,9 +1,10 @@
 import "../css/Dashboard.css";
+import { ARROW } from "../utils/constants";
 
 function Weather() {
     return (
         <section className="weather">
-            <h1>≻ Weather</h1>
+            <h1>{ARROW} Weather</h1>
             <div className="inner_cart">
                 <ul>
                     <li>Temperature : 30°</li>
@@ -17,7 +18,7 @@ function Weather() {
 function Quicklinks() {
     return (
         <section className="quicklinks">
-            <h1>≻ Quicklinks</h1>
+            <h1>{ARROW} Quicklinks</h1>
             <div className="inner_cart">
                 <ul>
                     <li>
@@ -56,7 +57,7 @@ function Quicklinks() {
 function Tasks() {
     return (
         <section className="tasks">
-            <h1>≻ Tasks</h1>
+            <h1>{ARROW} Tasks</h1>
             <div className="inner_cart">
                 <label>
                     <input type="checkbox" name="task-1" defaultValue="done" required="" />
@@ -74,7 +75,7 @@ function Tasks() {
 function Reminders() {
     return (
         <section className="reminders">
-            <h1>≻ Reminders</h1>
+            <h1>{ARROW} Reminders</h1>
             <div className="inner_cart">
                 <ul>
                     <li>Reminder1</li>
@@ -88,7 +89,7 @@ function Reminders() {
 function Dates() {
     return (
         < section className="dates" >
-            <h1>≻ Dates</h1>
+            <h1>{ARROW} Dates</h1>
             <div className="inner_cart">
                 <ul>
                     <li>01.06.26 : ...</li>
