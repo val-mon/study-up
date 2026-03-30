@@ -35,7 +35,6 @@ nav {
 nav a {
     background: none;
     border: none;
-    font-family: 'Futura';
     font-size: clamp(16px, 2vw, 30px);
     text-decoration: none;
     color: black;
@@ -64,7 +63,6 @@ nav a {
     color: black;
     border: 1px solid var(--main-color);
     border-radius: 8px;
-    font-family: 'Futura';
     font-size: clamp(14px, 1.5vw, 20px);
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;

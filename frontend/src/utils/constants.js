@@ -1,1 +1,1 @@
-export const ARROW = "≻";
+export const ARROW = ">";
