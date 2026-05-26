@@ -1,22 +1,11 @@
 /* #region Global */
 main {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-        "weather   quicklinks dates"
-        "tasks     tasks      tasks"
-        "reminders reminders  reminders";
-}
-
-@media (max-width: 900px) {
-    main {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "weather    quicklinks"
-            "dates      dates"
-            "tasks      tasks"
-            "reminders  reminders";
-    }
+        "weather   quicklinks"
+        "tasks     dates"
+        "reminders reminders";
 }
 
 @media (max-width: 560px) {
@@ -25,8 +14,8 @@ main {
         grid-template-areas:
             "weather"
             "quicklinks"
-            "dates"
             "tasks"
+            "dates"
             "reminders";
     }
 }
@@ -73,10 +62,12 @@ main section {
 
 .reminders {
     grid-area: reminders;
+    color: black;
 }
 
 .dates {
     grid-area: dates;
+    color: black;
 }
 
 .inner_cart {
@@ -89,5 +80,167 @@ main section {
 
 .inner_cart li {
     margin-bottom: 8px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+/* Shared base for all action buttons */
+.delete-item-btn,
+.edit-btn,
+.unpin-btn {
+  flex-shrink: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+/* Delete: circle, white border on purple, red X */
+.delete-item-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  color: #ff8a80;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.delete-item-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: white;
+  color: #ff5252;
+}
+
+/* Delete on light sections (reminders, dates) */
+.reminders .delete-item-btn,
+.dates .delete-item-btn {
+  border-color: #1a1a1a;
+  color: #e74c3c;
+}
+
+.reminders .delete-item-btn:hover,
+.dates .delete-item-btn:hover {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #e74c3c;
+}
+
+/* Edit: pill */
+.edit-btn {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+}
+
+.dates .edit-btn,
+.reminders .edit-btn {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.dates .edit-btn:hover,
+.reminders .edit-btn:hover {
+  background: #1a1a1a;
+  color: white;
+}
+
+/* Unpin: pill */
+.unpin-btn {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  color: white;
+}
+
+.unpin-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+}
+
+.dates .unpin-btn {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.dates .unpin-btn:hover {
+  background: #1a1a1a;
+  color: white;
+}
+
+/* Edit input */
+.edit-input {
+  flex: 1;
+  padding: 2px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  font-size: inherit;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  min-width: 0;
+}
+
+.dates .edit-input,
+.reminders .edit-input {
+  border-color: var(--main-color);
+  background: white;
+  color: black;
+}
+
+.city-form,
+.add-inline-form {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.city-form input,
+.add-inline-form input {
+    flex: 1;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background: white;
+    color: black;
+}
+
+.city-form button,
+.add-inline-form button {
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--main-color);
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.city-form button:hover,
+.add-inline-form button:hover {
+    background: var(--gradient2);
+    color: white;
+    border-color: transparent;
 }
 /* #endregion */

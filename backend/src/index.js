@@ -9,6 +9,7 @@ const { expressMiddleware } = require('@as-integrations/express5');
 const typeDefs = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
 const db = require('./utils/db');
+const { verifyToken } = require('./utils/auth');
 
 const app = express();
 app.use(express.json());
@@ -31,7 +32,13 @@ if (require.main === module) {
   db.connect()
     .then(async () => {
       await server.start();
-      app.use('/graphql', expressMiddleware(server));
+      app.use('/graphql', expressMiddleware(server, {
+        context: async ({ req }) => {
+          const token = req.headers.authorization?.split('Bearer ')[1];
+          const user = token ? verifyToken(token) : null;
+          return { user };
+        },
+      }));
 
       app.listen(process.env.PORT, () => {
         console.log(`INFO : Server running on port ${process.env.PORT}`);

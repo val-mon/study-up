@@ -75,3 +75,30 @@
     justify-content: center;
     height: 70vh;
 }
+
+.form-error {
+    color: #c0392b;
+    font-size: 13px;
+    text-align: center;
+    margin: -10px 0 10px;
+}
+
+.button-container {
+    gap: 12px;
+}
+
+.auth-switch {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+}
+
+.auth-switch a {
+    color: #3400ff;
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
