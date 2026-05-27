@@ -27,6 +27,7 @@ export default function Account() {
   const { data, loading } = useQuery(GET_ME);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const [updateUser] = useMutation(UPDATE_USER, {
     refetchQueries: [{ query: GET_ME }],
@@ -46,7 +47,7 @@ export default function Account() {
   };
 
   const handleDelete = async () => {
-    if (!confirm('Delete your account? This cannot be undone.')) return;
+    setShowConfirm(false);
     try {
       await deleteUser();
       logout();
@@ -86,8 +87,20 @@ export default function Account() {
 
       <section className="account-section">
         <h2>Danger Zone</h2>
-        <button className="delete-account-btn" onClick={handleDelete}>Delete Account</button>
+        <button className="delete-account-btn" onClick={() => setShowConfirm(true)}>Delete Account</button>
       </section>
+
+      {showConfirm && (
+        <div className="confirm-overlay" onClick={() => setShowConfirm(false)}>
+          <div className="confirm-box" onClick={e => e.stopPropagation()}>
+            <p>Delete your account? This cannot be undone.</p>
+            <div className="confirm-actions">
+              <button onClick={() => setShowConfirm(false)}>Cancel</button>
+              <button className="delete-account-btn" onClick={handleDelete}>Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
