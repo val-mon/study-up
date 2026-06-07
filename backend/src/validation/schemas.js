@@ -1,4 +1,4 @@
-const { z } = require('zod');
+import { z } from 'zod';
 
 const sendOTPSchema = z.object({
   email: z.string().email(),
@@ -68,7 +68,7 @@ const editQuicklinkSchema = z.object({
   url: z.string().url(),
 });
 
-module.exports = {
+export {
   sendOTPSchema, verifyOTPSchema, updateUserSchema,
   addTaskSchema, addDateSchema, addLinkSchema, addReminderSchema,
   editTaskSchema, editReminderSchema, editDateSchema, editLinkSchema,

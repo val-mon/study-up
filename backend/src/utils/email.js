@@ -1,11 +1,11 @@
-const { Resend } = require("resend");
+import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 /*
     e.g. : sendEmail(['test@uuuuuu.com'], 'Hello world!', '<strong>It works!</strong>')
 */
-async function sendEmail(client_mail, mail_subject, mail_text) {
+export async function sendEmail(client_mail, mail_subject, mail_text) {
     return resend.emails.send({
         from: 'StudyUp <onboarding@resend.dev>',
         to: client_mail,
@@ -13,5 +13,3 @@ async function sendEmail(client_mail, mail_subject, mail_text) {
         html: mail_text,
     });
 }
-
-module.exports = { sendEmail };

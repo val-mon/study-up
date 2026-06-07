@@ -1,6 +1,6 @@
-require('dotenv').config();
-const { ObjectId } = require('mongodb');
-const { connect, getDb, disconnect } = require('./src/utils/db');
+import 'dotenv/config';
+import { ObjectId } from 'mongodb';
+import { connect, getDb, disconnect } from './src/utils/db.js';
 
 const TARGET_EMAIL = 'vmonod5@gmail.com';
 

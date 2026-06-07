@@ -1,4 +1,4 @@
-async function getWeatherByCity(cityName) {
+export async function getWeatherByCity(cityName) {
   // geocoding (ville → lat/lon)
   const geoUrl = new URL("https://geocoding-api.open-meteo.com/v1/search");
   geoUrl.searchParams.set("name", cityName);
@@ -30,5 +30,3 @@ async function getWeatherByCity(cityName) {
     wind: weatherData.current.wind_speed_10m
   };
 }
-
-module.exports = { getWeatherByCity };
