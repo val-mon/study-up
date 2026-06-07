@@ -1,17 +1,27 @@
-const { GraphQLError } = require('graphql');
-const { ObjectId } = require('mongodb');
-const { getDb } = require('../utils/db');
-const { signToken } = require('../utils/auth');
-const { sendEmail } = require('../utils/email');
-const { getWeatherByCity } = require('../utils/meteo');
-const {
+import { GraphQLError } from 'graphql';
+import { ObjectId } from 'mongodb';
+import { getDb } from '../utils/db.js';
+import { signToken } from '../utils/auth.js';
+import { sendEmail } from '../utils/email.js';
+import { getWeatherByCity } from '../utils/meteo.js';
+import {
   sendOTPSchema, verifyOTPSchema, updateUserSchema,
   addTaskSchema, addDateSchema, addLinkSchema, addReminderSchema,
   editTaskSchema, editReminderSchema, editDateSchema, editLinkSchema,
   addQuicklinkSchema, editQuicklinkSchema,
-} = require('../validation/schemas');
+} from '../validation/schemas.js';
 
 const OTP_EXPIRES_MINUTES = parseInt(process.env.OTP_EXPIRES_IN_MINUTES) || 10;
+
+// Options shared by the auth cookie that carries the JWT. httpOnly keeps it
+// out of reach of client-side JavaScript (no access via document.cookie).
+const AUTH_COOKIE = 'token';
+const cookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'lax',
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+};
 
 function requireAuth(user) {
   if (!user) throw new GraphQLError('Not authenticated', { extensions: { code: 'UNAUTHENTICATED' } });
@@ -200,7 +210,7 @@ const resolvers = {
       return true;
     },
 
-    verifyOTP: async (_, args) => {
+    verifyOTP: async (_, args, { res }) => {
       const { email, code } = verifyOTPSchema.parse(args);
       const db = getDb();
 
@@ -217,8 +227,17 @@ const resolvers = {
         user = { _id: result.insertedId, name: otp.name, email };
       }
 
+      // The JWT is delivered ONLY through an HttpOnly cookie, never in the
+      // response body, so it is never exposed to client-side JavaScript.
       const token = signToken(user._id.toString());
-      return { token, user: { id: user._id.toString(), name: user.name, email: user.email } };
+      res?.cookie(AUTH_COOKIE, token, cookieOptions);
+
+      return { id: user._id.toString(), name: user.name, email: user.email };
+    },
+
+    logout: async (_, __, { res }) => {
+      res?.clearCookie(AUTH_COOKIE, cookieOptions);
+      return true;
     },
 
     updateUser: async (_, args, { user }) => {
@@ -502,4 +521,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;

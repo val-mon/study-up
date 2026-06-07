@@ -1,20 +1,24 @@
-require('dotenv').config();
+import 'dotenv/config';
+import { fileURLToPath } from 'url';
 
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const { ApolloServer } = require('@apollo/server');
-const { expressMiddleware } = require('@as-integrations/express5');
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@as-integrations/express5';
 
-const typeDefs = require('./graphql/schema');
-const resolvers = require('./graphql/resolvers');
-const db = require('./utils/db');
-const { verifyToken } = require('./utils/auth');
+import typeDefs from './graphql/schema.js';
+import resolvers from './graphql/resolvers.js';
+import * as db from './utils/db.js';
+import { verifyToken } from './utils/auth.js';
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(helmet({ contentSecurityPolicy: false }));
-app.use(cors({ origin: process.env.CLIENT_URL }));
+// credentials: true is required so the browser sends/receives the HttpOnly auth cookie
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 // error handling middleware, must be last
 app.use((err, req, res, next) => {
@@ -26,17 +30,20 @@ app.use((err, req, res, next) => {
   });
 });
 
-if (require.main === module) {
+const isMain = process.argv[1] === fileURLToPath(import.meta.url);
+
+if (isMain) {
   const server = new ApolloServer({ typeDefs, resolvers });
 
   db.connect()
     .then(async () => {
       await server.start();
       app.use('/graphql', expressMiddleware(server, {
-        context: async ({ req }) => {
-          const token = req.headers.authorization?.split('Bearer ')[1];
+        context: async ({ req, res }) => {
+          // The JWT now travels in an HttpOnly cookie instead of the Authorization header.
+          const token = req.cookies?.token;
           const user = token ? verifyToken(token) : null;
-          return { user };
+          return { user, res };
         },
       }));
 
@@ -51,4 +58,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = app;
+export default app;

@@ -14,8 +14,9 @@ const SEND_OTP = gql`
 const VERIFY_OTP = gql`
   mutation VerifyOTP($email: String!, $code: String!) {
     verifyOTP(email: $email, code: $code) {
-      token
-      user { id name email }
+      id
+      name
+      email
     }
   }
 `;
@@ -48,7 +49,7 @@ export default function Register() {
     setError('');
     try {
       const { data } = await verifyOTP({ variables: { email, code } });
-      login(data.verifyOTP.token, data.verifyOTP.user);
+      login(data.verifyOTP);
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);

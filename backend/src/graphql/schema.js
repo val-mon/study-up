@@ -44,11 +44,6 @@ const typeDefs = `#graphql
     tasks: [Task!]!
   }
 
-  type AuthPayload {
-    token: String!
-    user: User!
-  }
-
   type QuickLink {
     id: ID!
     label: String!
@@ -74,7 +69,8 @@ const typeDefs = `#graphql
 
   type Mutation {
     sendOTP(email: String!, name: String): Boolean!
-    verifyOTP(email: String!, code: String!): AuthPayload!
+    verifyOTP(email: String!, code: String!): User!
+    logout: Boolean!
     updateUser(name: String!): User!
     deleteUser: Boolean!
     addCourse(name: String!): Course!
@@ -101,4 +97,4 @@ const typeDefs = `#graphql
   }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;

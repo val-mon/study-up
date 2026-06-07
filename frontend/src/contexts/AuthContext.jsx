@@ -1,18 +1,27 @@
 import { createContext, useContext, useState } from 'react';
+import { useApolloClient } from '@apollo/client/react';
+import { gql } from '@apollo/client';
 
 const AuthContext = createContext(null);
 
+const LOGOUT = gql`
+  mutation Logout {
+    logout
+  }
+`;
+
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(() => localStorage.getItem('token'));
+  const client = useApolloClient();
+
+  // The JWT lives in an HttpOnly cookie and is NOT accessible here.
+  // We only keep the (non-sensitive) user info to drive the UI/auth state.
   const [user, setUser] = useState(() => {
     const u = localStorage.getItem('user');
     return u ? JSON.parse(u) : null;
   });
 
-  const login = (newToken, newUser) => {
-    localStorage.setItem('token', newToken);
+  const login = (newUser) => {
     localStorage.setItem('user', JSON.stringify(newUser));
-    setToken(newToken);
     setUser(newUser);
   };
 
@@ -22,15 +31,19 @@ export function AuthProvider({ children }) {
     setUser(merged);
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
+  const logout = async () => {
+    try {
+      await client.mutate({ mutation: LOGOUT }); // clears the HttpOnly cookie server-side
+    } catch {
+      // ignore network errors on logout
+    }
     localStorage.removeItem('user');
-    setToken(null);
     setUser(null);
+    await client.clearStore();
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout, updateUser, isAuth: !!token }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser, isAuth: !!user }}>
       {children}
     </AuthContext.Provider>
   );
