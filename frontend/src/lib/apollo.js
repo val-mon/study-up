@@ -1,20 +1,15 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
 
-const httpLink = createHttpLink({ uri: 'http://localhost:3000/graphql' });
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
+// API URL comes from the Vite env (.env -> import.meta.env), not hardcoded.
+// credentials: 'include' makes the browser send/receive the HttpOnly auth cookie,
+// so the JWT is never read or stored by client-side JavaScript.
+const httpLink = createHttpLink({
+  uri: import.meta.env.VITE_API_URL,
+  credentials: 'include',
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
